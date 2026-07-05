@@ -8,6 +8,7 @@ import mlflow
 import mlflow.sklearn
 import pandas as pd
 
+from mlflow.models import infer_signature
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
@@ -276,7 +277,17 @@ def main(
             mlflow.log_metric(f"best_{key}", value)
         mlflow.log_artifact(metrics_out)
         mlflow.log_artifact(model_info_out)
-        mlflow.sklearn.log_model(best_result["model"], "best_model")
+        input_example = X_train.head(5)
+        prediction_example = best_result["model"].predict_proba(input_example)[:, 1]
+        signature = infer_signature(input_example, prediction_example)
+
+        mlflow.sklearn.log_model(
+            sk_model=best_result["model"],
+            name="best_model",
+            registered_model_name="creditcard-fraud-model",
+            signature=signature,
+            input_example=input_example
+        )
 
     print(json.dumps(metrics, indent=4))
     print(f"Modelo guardado en: {model_out}")

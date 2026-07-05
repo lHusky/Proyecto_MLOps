@@ -1,2 +1,28 @@
-.venv
-data/creditcard.csv
+# Entorno Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# MLflow local - NO subir porque guarda rutas de cada maquina
+mlruns/
+mlflow.db
+
+# DVC local
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+
+# Datos y salidas generadas
+data/raw/*.csv
+data/processed/
+models/*.pkl
+artifacts/*.json
+
+# Logs
+*.log
