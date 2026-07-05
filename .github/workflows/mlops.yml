@@ -1,0 +1,40 @@
+name: MLOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  train-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+
+      - name: Recuperar datos con DVC
+        run: |
+          dvc pull || echo "Sin remoto DVC configurado; se omite dvc pull"
+
+      - name: Ejecutar pipeline DVC
+        run: |
+          dvc repro
+
+      - name: Validar métricas mínimas
+        run: |
+          python src/validate.py --metrics artifacts/metrics.json
+
+      - name: Mostrar métricas
+        run: |
+          cat artifacts/metrics.json

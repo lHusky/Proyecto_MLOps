@@ -1,5 +1,8 @@
 pandas
-numpy
 scikit-learn
-joblib
 mlflow
+dvc
+fastapi
+uvicorn
+joblib
+numpy

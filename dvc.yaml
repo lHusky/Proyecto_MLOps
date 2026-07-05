@@ -1,0 +1,31 @@
+stages:
+  preprocess:
+    cmd: python src/features.py --infile data/raw/creditcard.csv --outdir 
+      data/processed --target Class --stats-out artifacts/data_validation.json
+    deps:
+    - data/raw/creditcard.csv
+    - src/features.py
+    outs:
+    - artifacts/data_validation.json
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - data/processed/val.csv
+  train:
+    cmd: python src/train.py --train data/processed/train.csv --val 
+      data/processed/val.csv --test data/processed/test.csv --target Class 
+      --model-out models/best_fraud_model.pkl --metrics-out 
+      artifacts/metrics.json --model-info-out artifacts/model_info.json
+    deps:
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - data/processed/val.csv
+    - src/train.py
+    outs:
+    - artifacts/metrics.json
+    - artifacts/model_info.json
+    - models/best_fraud_model.pkl
+  validate:
+    cmd: python src/validate.py --metrics artifacts/metrics.json
+    deps:
+    - artifacts/metrics.json
+    - src/validate.py
