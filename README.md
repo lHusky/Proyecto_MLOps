@@ -143,4 +143,5 @@ Y se mostrarán en consola:
 - Yerson Daniel Mamani Valverde - 20211590
 - Joaquin Alonso Nuñez Gonzales - 20204706
 - Leonardo Miguel Pachas Cleonares - 20211961
+- Gabriel Andres Tineo Morales - 20214245
 - Diana Sofia Villalva Gomez - 20212903
