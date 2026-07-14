@@ -19,7 +19,7 @@ mlflow.db
 .dvc/config.local
 
 # Datos y salidas generadas
-data/raw/*.csv
+# data/raw/*.csv
 data/processed/
 models/*.pkl
 artifacts/*.json
