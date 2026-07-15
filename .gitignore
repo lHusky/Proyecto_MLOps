@@ -26,3 +26,7 @@ artifacts/*.json
 
 # Logs
 *.log
+
+*.mlflow.db
+*.mlflow_ci.db
+*.mlruns/
