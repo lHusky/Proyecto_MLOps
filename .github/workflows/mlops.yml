@@ -37,7 +37,7 @@ jobs:
 
       - name: Ejecutar pipeline DVC
         env:
-            MLFLOW_TRACKING_URI: file:./mlruns
+            MLFLOW_TRACKING_URI: sqlite:///mlflow.db
         run: |
           dvc repro
 
