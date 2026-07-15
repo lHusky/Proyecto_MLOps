@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -22,6 +24,16 @@ jobs:
       - name: Instalar dependencias
         run: |
           pip install -r requirements.txt
+
+      - name: Descargar archivos Git LFS
+        run: |
+          git lfs install
+          git lfs pull
+          
+      - name: Verificar dataset
+        run: |
+          ls -lh data/raw
+          head -n 1 data/raw/creditcard.csv
 
       - name: Recuperar datos con DVC
         run: |
