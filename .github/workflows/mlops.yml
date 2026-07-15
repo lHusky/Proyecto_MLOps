@@ -29,17 +29,15 @@ jobs:
         run: |
           git lfs install
           git lfs pull
-          
+
       - name: Verificar dataset
         run: |
           ls -lh data/raw
           head -n 1 data/raw/creditcard.csv
 
-      - name: Recuperar datos con DVC
-        run: |
-          dvc pull || echo "Sin remoto DVC configurado; se omite dvc pull"
-
       - name: Ejecutar pipeline DVC
+        env:
+            MLFLOW_TRACKING_URI: file:./mlruns
         run: |
           dvc repro
 
