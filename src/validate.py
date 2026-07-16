@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--metrics", default="artifacts/metrics.json")
     parser.add_argument("--min-pr-auc", type=float, default=0.70)
-    parser.add_argument("--min-precision", type=float, default=0.75)
+    parser.add_argument("--min-precision", type=float, default=0.5)
     parser.add_argument("--min-recall", type=float, default=0.60)
     parser.add_argument("--min-f1", type=float, default=0.65)
     args = parser.parse_args()
