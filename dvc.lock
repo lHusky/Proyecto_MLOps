@@ -62,7 +62,7 @@ stages:
       size: 730
     - path: models/best_fraud_model.pkl
       hash: md5
-      md5: ddb8fbdde23da5cb12405219310eccf1
+      md5: 32b82c324b23ab3d353fa5d4a9b61e42
       size: 391631
   validate:
     cmd: python src/validate.py --metrics artifacts/metrics.json
